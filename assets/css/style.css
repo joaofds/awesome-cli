@@ -106,3 +106,17 @@ body {
 .tree .inner-ul ul li {
   cursor: pointer;
 }
+
+.content .command-details {
+  padding: 8px;
+  background-color: #ddd;
+  border-radius: 8px;
+}
+
+.content .command-details button {
+  
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

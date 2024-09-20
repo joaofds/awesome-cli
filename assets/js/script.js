@@ -1,5 +1,6 @@
 // Variável para armazenar o último <details> aberto
 let lastOpenedDetails = null;
+let countId = 0;
 
 function buildTree(data, parentElement, depth = 0) {
     for (const [key, value] of Object.entries(data)) {
@@ -35,10 +36,23 @@ function buildTree(data, parentElement, depth = 0) {
                 // Cria um novo elemento com a classe "command-details"
                 const newCommandDetails = document.createElement('pre');
                 newCommandDetails.classList.add('command-details');
-                newCommandDetails.textContent = `Descrição: ${value.Description || "Sem descrição"}\n\nComando: ${value.Command || "Sem comando"}`;
-            
+                newCommandDetails.textContent = `${value.Description}\n${value.Command}`;
+                newCommandDetails.setAttribute("id", `detail-${++countId}`);
+                
                 // Adiciona o novo elemento à coluna de conteúdo
                 document.querySelector('.content').appendChild(newCommandDetails);
+
+                // seleciona <pre> recem criado
+                const pre = document.querySelector(`#detail-${countId}`)
+
+                // seta atributo no elemento
+                //pre.setAttribute("onclick", "deleteElement(event, this);");
+
+                // botao para remover elemento.
+                let button = document.createElement('button');
+                button.setAttribute("onclick", "deleteElement(event, this);");
+                button.textContent = "Remover";
+                pre.appendChild(button);
             });
             
         }
@@ -57,3 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         buildTree(jsonData, document.querySelector('.tree'));
     });
 });
+
+function deleteElement(event, el) {
+    el.parentElement.remove()
+}
