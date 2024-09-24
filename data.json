@@ -1,13 +1,25 @@
 {
-    "Banco de Dados": {
-      "MySQL": {
-        "Backup Dump": {
-          "Description": "Gerar dump do banco de dados.",
-          "Command": "sudo mysqldump -h 127.0.0.1 -P 3306 -u root -p nome_do_banco > arquivo_destino.sql"
+    "Hacking": {
+      "Aircrack": {
+        "Install": {
+          "Description": "Linux install aircrack.",
+          "Command": "sudo apt install aircrack-ng"
         },
-        "Dump Restore": {
-          "Description": "Restaurar dump do banco de dados.",
-          "Command": "sudo mysql -h 127.0.0.1 -P 3306 -u root -p nome_do_banco < arquivo_destino.sql" 
+        "Start Monitor": {
+          "Description": "Start interface monitoring",
+          "Command": "sudo airmon-ng start wifi_interface_name" 
+        },
+        "Stop Monitor": {
+          "Description": "Stop interface monitoring",
+          "Command": "sudo airmon-ng stop wifi_interface_name" 
+        },
+        "Monitoring": {
+          "Description": "Iniciar monitoramento",
+          "Command": "airodump-ng interfacemodomonitor" 
+        },
+        "Write File": {
+          "Description": "File Generate",
+          "Command": "airodump-ng --bssid numerodobssid -w filename wirelessinteface" 
         }
       },
       "PostgreSQL": {
