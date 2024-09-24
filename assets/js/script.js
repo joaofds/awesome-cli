@@ -45,11 +45,9 @@ function buildTree(data, parentElement, depth = 0) {
                 // seleciona <pre> recem criado
                 const pre = document.querySelector(`#detail-${countId}`)
 
-                // seta atributo no elemento
-                //pre.setAttribute("onclick", "deleteElement(event, this);");
-
                 // botao para remover elemento.
                 let button = document.createElement('button');
+                button.classList.add('btn', 'btn-sm', 'btn-primary');
                 button.setAttribute("onclick", "deleteElement(event, this);");
                 button.textContent = "Remover";
                 pre.appendChild(button);
@@ -65,13 +63,25 @@ function buildTree(data, parentElement, depth = 0) {
 
 // Busca json e constroi a arvore
 document.addEventListener('DOMContentLoaded', () => {
+    const tree = document.querySelector('.tree');
+    
     fetch('data.json')
     .then(response => response.json())
-    .then(jsonData => {
-        buildTree(jsonData, document.querySelector('.tree'));
+    .then(data => {
+    
+        // Ordenar os primeiros itens do objeto (primeiro nível)
+        const sortedData = Object.keys(data)
+            .sort() // Ordena alfabeticamente
+            .reduce((sortedObj, key) => {
+                sortedObj[key] = data[key];
+                return sortedObj;
+            }, {});
+            
+        buildTree(sortedData, tree);
     });
 });
 
+// Remove elemento
 function deleteElement(event, el) {
     el.parentElement.remove()
 }
