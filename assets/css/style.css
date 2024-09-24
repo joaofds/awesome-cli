@@ -16,7 +16,6 @@ body {
 
 .content {
   height: auto;
-  width: 70%;
 }
 
 .tree {
@@ -31,7 +30,7 @@ body {
 .tree li {
   display: block;
   position: relative;
-  padding-top: 6px;
+  padding-top: 2px;
   padding-left: calc(2 * var(--spacing) - var(--radius) - 2px);
 }
 

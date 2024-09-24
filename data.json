@@ -20,28 +20,60 @@
         "Write File": {
           "Description": "File Generate",
           "Command": "airodump-ng --bssid numerodobssid -w filename wirelessinteface" 
-        }
-      },
-      "PostgreSQL": {
-        "Backup Dump": {
-          "Description": "Gerar dump do banco de dados.",
-          "Command": "sudo mysqldump -h 127.0.0.1 -P 3306 -u root -p nome_do_banco > arquivo_destino.sql"
         },
-        "Dump Restore": {
-          "Description": "Restaurar dump do banco de dados.",
-          "Command": "sudo mysql -h 127.0.0.1 -P 3306 -u root -p nome_do_banco < arquivo_destino.sql" 
+        "Scanning": {
+          "Description": "In another sudo terminal run\n",
+          "Command": "aireplay-ng -c 0~11 -0 100 -a bssid -c station wireless-interface\nor\naireplay-ng -c 0~11 -0 100 -a bssid -c station wireless-interface --ignore-negative-one" 
+        },
+        "Testing Passwords": {
+          "Description": "Testing a password with password list",
+          "Command": "aircrack-ng  file.cap  -w  path_of_list.txt"
+        }
+      }
+    },
+    "Frameworks": {
+      "Django": {
+        "New project and app": {
+          "Description": "Create a new project and app python django.",
+          "Command": "1. Make a directory for the django project\n2. Install 'pipenv' in the system environment if not already\n3. Create a virtual environment by running 'pipenv shell'\n(the location of the venv defaults to '~/user/.virtualenv/', to make it live inside the current directory, make an\nempty folder named '.venv', pipenv automatically detects that folder and creates the virtual environment inside that folder)\n\n4. Now install django by running 'pipenv install django' (installs the latest version)\n\n5. Start the project by running 'django-admin startproject $NAME_OF_THE_PROJECT'\n\n6. To start the live server cd into the project and run 'python manage.py runserver port(optional)'\n\n7. To make a new app inside that project run 'python manage.py startapp $NAME_OF_THE_APP'"
         }
       }
     },
     "Conteinerização": {
       "Docker": {
-        "Backup Dump": {
-          "Description": "Gerar dump do banco de dados.",
-          "Command": "sudo mysqldump -h 127.0.0.1 -P 3306 -u root -p nome_do_banco > arquivo_destino.sql"
+        "Copy file": {
+          "Description": "Copy a file to inside container",
+          "Command": "docker cp ~/adagio.backup \"$(docker-compose ps -q postgresql)\":/home/adagio.backup\ndocker cp /home/joaofds/adagio.psql postgres11.7:/home/adagio.sql"
         },
-        "Kubernets": {
-          "Description": "Restaurar dump do banco de dados.",
-          "Command": "sudo mysql -h 127.0.0.1 -P 3306 -u root -p nome_do_banco < arquivo_destino.sql" 
+        "Show Logs": {
+          "Description": "Show real time container logs",
+          "Command": "docker logs --tail 50 --follow --timestamps container_name"
+        },
+        "MySQL Backup": {
+          "Description": "MySQL backup containers database",
+          "Command": "docker exec CONTAINER /usr/bin/mysqldump -u root --password=root DATABASE > backup.sql"
+        },
+        "MySQL Restore Backup": {
+          "Description": "MySQL restore database to container",
+          "Command": "cat backup.sql | docker exec -i CONTAINER /usr/bin/mysql -u root --password=root DATABASE"
+        },
+        "PostgreSQL Backup": {
+          "Description": "PostgreSQL backup containers database",
+          "Command": "docker exec -t your-db-container pg_dumpall -c -U postgres > dump_`date +%d-%m-%Y\"_\"%H_%M_%S`.sql"
+        },
+        "PostgreSQL Restore Backup": {
+          "Description": "PostgreSQL restore database to container",
+          "Command": "cat your_dump.sql | docker exec -i your-db-container psql -U postgres"
+        }
+      },
+      "Docker Compose": {
+        "Up Containers": {
+          "Description": "Up all containers and services",
+          "Command": "docker-compose up -d"
+        },
+        "Down Containers": {
+          "Description": "Down all containers and services",
+          "Command": "docker-compose down"
         }
       }
     }
