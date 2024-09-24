@@ -6,19 +6,17 @@ body {
 
 .container {
   display: flex;
-  height: 100vh;
 }
 
 .sidebar {
-  width: 30%;
+  height: auto;
   background-color: #f4f4f4;
-  padding: 10px;
   overflow-y: auto;
 }
 
 .content {
+  height: auto;
   width: 70%;
-  padding: 10px;
 }
 
 .tree {
