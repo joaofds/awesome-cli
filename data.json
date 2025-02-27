@@ -64,6 +64,10 @@
         "PostgreSQL Restore Backup": {
           "Description": "PostgreSQL restore database to container",
           "Command": "cat your_dump.sql | docker exec -i your-db-container psql -U postgres"
+        },
+      "PostgreSQL Restore pgdump": {
+          "Description": "PostgreSQL restore pdgump file",
+          "Command": "docker exec -i <container> pg_restore -U postgres -d <db_name> < ./filename.pgdump"
         }
       },
       "Docker Compose": {
