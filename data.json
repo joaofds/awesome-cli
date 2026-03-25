@@ -29,13 +29,139 @@
         "Description": "Testing a password with password list",
         "Command": "aircrack-ng  file.cap  -w  path_of_list.txt"
       }
+    },
+    "Nmap": {
+      "Scan Simples": {
+        "Description": "Scan simples de portas",
+        "Command": "nmap alvo"
+      },
+      "Scan Completo": {
+        "Description": "Scan completo de portas e serviços",
+        "Command": "nmap -sV -A alvo"
+      },
+      "Scan UDP": {
+        "Description": "Scan de portas UDP",
+        "Command": "nmap -sU alvo"
+      },
+      "Scan com Script": {
+        "Description": "Scan usando scripts NSE",
+        "Command": "nmap --script=vuln alvo"
+      }
+    },
+    "Metasploit": {
+      "Iniciar Console": {
+        "Description": "Iniciar o console do Metasploit",
+        "Command": "msfconsole"
+      },
+      "Buscar Exploit": {
+        "Description": "Buscar exploit por nome",
+        "Command": "search nome"
+      },
+      "Usar Exploit": {
+        "Description": "Selecionar exploit",
+        "Command": "use caminho/do/exploit"
+      },
+      "Setar Opção": {
+        "Description": "Setar opções do exploit",
+        "Command": "set NOME valor"
+      },
+      "Executar Exploit": {
+        "Description": "Executar exploit selecionado",
+        "Command": "exploit"
+      }
     }
   },
   "Frameworks": {
     "Django": {
-      "New project and app": {
-        "Description": "Create a new project and app python django.",
-        "Command": "1. Make a directory for the django project\n2. Install 'pipenv' in the system environment if not already\n3. Create a virtual environment by running 'pipenv shell'\n(the location of the venv defaults to '~/user/.virtualenv/', to make it live inside the current directory, make an\nempty folder named '.venv', pipenv automatically detects that folder and creates the virtual environment inside that folder)\n\n4. Now install django by running 'pipenv install django' (installs the latest version)\n\n5. Start the project by running 'django-admin startproject $NAME_OF_THE_PROJECT'\n\n6. To start the live server cd into the project and run 'python manage.py runserver port(optional)'\n\n7. To make a new app inside that project run 'python manage.py startapp $NAME_OF_THE_APP'"
+      "Novo Projeto": {
+        "Description": "Criar novo projeto Django",
+        "Command": "django-admin startproject nome_do_projeto"
+      },
+      "Nova App": {
+        "Description": "Criar nova app Django",
+        "Command": "python manage.py startapp nome_da_app"
+      },
+      "Rodar Servidor": {
+        "Description": "Iniciar servidor de desenvolvimento",
+        "Command": "python manage.py runserver"
+      },
+      "Migrar Banco": {
+        "Description": "Aplicar/migrar alterações do banco de dados",
+        "Command": "python manage.py makemigrations\npython manage.py migrate"
+      },
+      "Criar Superusuário": {
+        "Description": "Criar usuário admin para acessar o admin do Django",
+        "Command": "python manage.py createsuperuser"
+      },
+      "Acessar Shell": {
+        "Description": "Abrir shell interativo do Django",
+        "Command": "python manage.py shell"
+      },
+      "Coletar Arquivos Estáticos": {
+        "Description": "Coletar arquivos estáticos para produção",
+        "Command": "python manage.py collectstatic"
+      },
+      "Listar Rotas": {
+        "Description": "Listar todas as rotas do projeto",
+        "Command": "python manage.py show_urls"
+      },
+      "Executar Testes": {
+        "Description": "Executar testes automatizados",
+        "Command": "python manage.py test"
+      },
+      "Dump Banco": {
+        "Description": "Exportar dados do banco para JSON",
+        "Command": "python manage.py dumpdata > db.json"
+      },
+      "Load Banco": {
+        "Description": "Importar dados do JSON para o banco",
+        "Command": "python manage.py loaddata db.json"
+      }
+    },
+    "Laravel": {
+      "Novo Projeto": {
+        "Description": "Criar novo projeto Laravel",
+        "Command": "composer create-project --prefer-dist laravel/laravel nome_do_projeto"
+      },
+      "Rodar Servidor": {
+        "Description": "Iniciar servidor de desenvolvimento",
+        "Command": "php artisan serve"
+      },
+      "Nova Migration": {
+        "Description": "Criar nova migration",
+        "Command": "php artisan make:migration nome_da_migration"
+      },
+      "Migrar Banco": {
+        "Description": "Executar migrations",
+        "Command": "php artisan migrate"
+      },
+      "Rollback Migration": {
+        "Description": "Desfazer última migration",
+        "Command": "php artisan migrate:rollback"
+      },
+      "Nova Model": {
+        "Description": "Criar nova model",
+        "Command": "php artisan make:model NomeModel"
+      },
+      "Nova Controller": {
+        "Description": "Criar nova controller",
+        "Command": "php artisan make:controller NomeController"
+      },
+      "Nova Seeder": {
+        "Description": "Criar nova seeder",
+        "Command": "php artisan make:seeder NomeSeeder"
+      },
+      "Executar Seeders": {
+        "Description": "Executar seeders",
+        "Command": "php artisan db:seed"
+      },
+      "Criar Auth": {
+        "Description": "Gerar scaffolding de autenticação",
+        "Command": "php artisan make:auth"
+      },
+      "Limpar Cache": {
+        "Description": "Limpar cache da aplicação",
+        "Command": "php artisan cache:clear"
       }
     }
   },
@@ -83,13 +209,63 @@
   },
   "Banco de Dados": {
     "PostgreSQL": {
-      "PGDump Backup": {
-        "Description": "Fazer dump de banco",
-        "Command": "pg_dump -h 127.0.0.1 -U sgc -p 5432 -f bkp-25032026.sql.pgdump -F c nome_do_banco"
+      "Conectar via psql": {
+        "Description": "Conectar ao banco via terminal",
+        "Command": "psql -h host -U usuario -d banco"
       },
-      "PGDump Restore": {
-        "Description": "Restaurar banco de dadpos com pg_restore",
-        "Command": "pg_restore -U postgres -d nome_do_banco < ./meu_backup.dump"
+      "Listar Bancos": {
+        "Description": "Listar bancos de dados",
+        "Command": "\\l"
+      },
+      "Listar Tabelas": {
+        "Description": "Listar tabelas do banco",
+        "Command": "\\dt"
+      },
+      "Backup Completo": {
+        "Description": "Backup completo do banco",
+        "Command": "pg_dump -U usuario -h host -F c -b -v -f arquivo.backup banco"
+      },
+      "Restaurar Backup": {
+        "Description": "Restaurar backup gerado pelo pg_dump",
+        "Command": "pg_restore -U usuario -d banco -v arquivo.backup"
+      },
+      "Exportar Dados": {
+        "Description": "Exportar dados de uma tabela para CSV",
+        "Command": "COPY tabela TO 'arquivo.csv' DELIMITER ',' CSV HEADER;"
+      },
+      "Importar Dados": {
+        "Description": "Importar dados de CSV para tabela",
+        "Command": "COPY tabela FROM 'arquivo.csv' DELIMITER ',' CSV HEADER;"
+      }
+    },
+    "MySQL": {
+      "Conectar via mysql": {
+        "Description": "Conectar ao banco via terminal",
+        "Command": "mysql -u usuario -p -h host banco"
+      },
+      "Listar Bancos": {
+        "Description": "Listar bancos de dados",
+        "Command": "SHOW DATABASES;"
+      },
+      "Listar Tabelas": {
+        "Description": "Listar tabelas do banco",
+        "Command": "SHOW TABLES;"
+      },
+      "Backup Completo": {
+        "Description": "Backup completo do banco",
+        "Command": "mysqldump -u usuario -p banco > backup.sql"
+      },
+      "Restaurar Backup": {
+        "Description": "Restaurar backup do banco",
+        "Command": "mysql -u usuario -p banco < backup.sql"
+      },
+      "Exportar Dados": {
+        "Description": "Exportar dados de uma tabela para CSV",
+        "Command": "SELECT * FROM tabela INTO OUTFILE '/tmp/tabela.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n';"
+      },
+      "Importar Dados": {
+        "Description": "Importar dados de CSV para tabela",
+        "Command": "LOAD DATA INFILE '/tmp/tabela.csv' INTO TABLE tabela FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n';"
       }
     }
   },
@@ -102,6 +278,144 @@
       "Atualizar Repo Local": {
         "Description": "Busca atualizações no repositorio remoto",
         "Command": "git pull"
+      },
+      "Status": {
+        "Description": "Verificar status do repositório",
+        "Command": "git status"
+      },
+      "Adicionar Arquivos": {
+        "Description": "Adicionar arquivos ao stage",
+        "Command": "git add ."
+      },
+      "Commit": {
+        "Description": "Fazer commit das alterações",
+        "Command": "git commit -m 'mensagem'"
+      },
+      "Log": {
+        "Description": "Ver histórico de commits",
+        "Command": "git log --oneline --graph --all"
+      },
+      "Criar Tag": {
+        "Description": "Criar uma nova tag",
+        "Command": "git tag v1.0.0"
+      },
+      "Ver Branches": {
+        "Description": "Listar todas as branches",
+        "Command": "git branch -a"
+      },
+      "Merge": {
+        "Description": "Mesclar branch",
+        "Command": "git merge nome_da_branch"
+      },
+      "Rebase": {
+        "Description": "Rebase da branch",
+        "Command": "git rebase nome_da_branch"
+      },
+      "Stash": {
+        "Description": "Guardar alterações temporariamente",
+        "Command": "git stash"
+      },
+      "Stash Apply": {
+        "Description": "Aplicar alterações guardadas",
+        "Command": "git stash apply"
+      },
+      "Reset": {
+        "Description": "Desfazer alterações locais",
+        "Command": "git reset --hard"
+      }
+    }
+  },
+  "Console": {
+    "Linux": {
+      "Listar arquivos": {
+        "Description": "Lista arquivos e pastas do diretório atual",
+        "Command": "ls -la"
+      },
+      "Ver conteúdo de arquivo": {
+        "Description": "Exibe o conteúdo de um arquivo",
+        "Command": "cat nome_do_arquivo"
+      },
+      "Buscar texto em arquivos": {
+        "Description": "Busca por texto em arquivos recursivamente",
+        "Command": "grep -r 'texto' ."
+      },
+      "Ver uso de disco": {
+        "Description": "Mostra uso de disco em formato legível",
+        "Command": "df -h"
+      },
+      "Ver processos": {
+        "Description": "Lista processos em execução",
+        "Command": "ps aux"
+      },
+      "Matar processo": {
+        "Description": "Finaliza processo pelo PID",
+        "Command": "kill -9 PID"
+      },
+      "Copiar arquivos": {
+        "Description": "Copia arquivos ou diretórios",
+        "Command": "cp -r origem destino"
+      },
+      "Mover arquivos": {
+        "Description": "Move arquivos ou diretórios",
+        "Command": "mv origem destino"
+      },
+      "Remover arquivos": {
+        "Description": "Remove arquivos ou diretórios",
+        "Command": "rm -rf arquivo_ou_diretorio"
+      },
+      "Ver IP": {
+        "Description": "Mostra o endereço IP da máquina",
+        "Command": "ip a"
+      },
+      "Ver variáveis de ambiente": {
+        "Description": "Lista variáveis de ambiente",
+        "Command": "printenv"
+      }
+    },
+    "Windows": {
+      "Listar arquivos": {
+        "Description": "Lista arquivos e pastas do diretório atual",
+        "Command": "dir"
+      },
+      "Ver conteúdo de arquivo": {
+        "Description": "Exibe o conteúdo de um arquivo",
+        "Command": "type nome_do_arquivo"
+      },
+      "Buscar texto em arquivos": {
+        "Description": "Busca por texto em arquivos do diretório atual",
+        "Command": "findstr /S /I /C:\"texto\" *.*"
+      },
+      "Ver uso de disco": {
+        "Description": "Mostra uso de disco das unidades",
+        "Command": "wmic logicaldisk get size,freespace,caption"
+      },
+      "Ver processos": {
+        "Description": "Lista processos em execução",
+        "Command": "tasklist"
+      },
+      "Matar processo": {
+        "Description": "Finaliza processo pelo nome ou PID",
+        "Command": "taskkill /IM nome_processo.exe /F"
+      },
+      "Copiar arquivos": {
+        "Description": "Copia arquivos ou diretórios",
+        "Command": "xcopy origem destino /E /I"
+      },
+      "Mover arquivos": {
+        "Description": "Move arquivos ou diretórios",
+        "Command": "move origem destino"
+      },
+      "Remover arquivos": {
+        "Description": "Remove arquivos ou diretórios",
+        "Command": "del /F /Q arquivo & rmdir /S /Q diretorio"
+      },
+      "Ver IP": {
+        "Description": "Mostra o endereço IP da máquina",
+        "Command": "ipconfig"
+      },
+      "Ver variáveis de ambiente": {
+        "Description": "Lista variáveis de ambiente",
+        "Command": "set"
       }
     }
   }
