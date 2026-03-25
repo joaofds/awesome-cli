@@ -92,5 +92,13 @@
         "Command": "pg_restore -U postgres -d nome_do_banco < ./meu_backup.dump"
       }
     }
+  },
+  "Versionamento": {
+    "Git": {
+      "Nova Branch": {
+        "Description": "Cria nova branch e faz checkout",
+        "Command": "git checkout -b nome_da_branch"
+      }
+    }
   }
 }
