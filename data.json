@@ -518,5 +518,79 @@
         "Command": "set"
       }
     }
+  },
+  "Linguagens": {
+    "Python": {
+      "Rodar Script": {
+        "Description": "Executa um script Python",
+        "Command": "python nome_do_arquivo.py"
+      },
+      "Rodar Script Python 3": {
+        "Description": "Executa um script usando Python 3",
+        "Command": "python3 nome_do_arquivo.py"
+      },
+      "Criar Ambiente Virtual": {
+        "Description": "Cria um ambiente virtual com venv",
+        "Command": "python -m venv venv"
+      },
+      "Ativar Ambiente Virtual (Linux/Mac)": {
+        "Description": "Ativa o ambiente virtual no Linux/Mac",
+        "Command": "source venv/bin/activate"
+      },
+      "Ativar Ambiente Virtual (Windows)": {
+        "Description": "Ativa o ambiente virtual no Windows",
+        "Command": ".\\venv\\Scripts\\activate"
+      },
+      "Instalar Pacotes": {
+        "Description": "Instala pacotes listados em requirements.txt",
+        "Command": "pip install -r requirements.txt"
+      },
+      "Listar Pacotes Instalados": {
+        "Description": "Lista todos os pacotes instalados",
+        "Command": "pip list"
+      },
+      "Rodar Servidor HTTP Embutido": {
+        "Description": "Inicia um servidor HTTP na porta 8000",
+        "Command": "python -m http.server 8000"
+      },
+      "Atualizar pip": {
+        "Description": "Atualiza o gerenciador de pacotes pip",
+        "Command": "python -m pip install --upgrade pip"
+      },
+      "Listar dependencias": {
+        "Description": "Lista todas as dependencias e suas versoes instaladas no projeto",
+        "Command": "pip freeze"
+      },
+      "Requirements File": {
+        "Description": "Gerar arquivo requirements.txt",
+        "Command": "pip freeze > requirements.txt"
+      }
+    },
+    "PHP": {
+      "Rodar Script": {
+        "Description": "Executa um script PHP",
+        "Command": "php nome_do_arquivo.php"
+      },
+      "Rodar Servidor Embutido": {
+        "Description": "Inicia o servidor embutido do PHP na porta 8000",
+        "Command": "php -S localhost:8000"
+      },
+      "Instalar Dependências (Composer)": {
+        "Description": "Instala dependências do projeto via Composer",
+        "Command": "composer install"
+      },
+      "Atualizar Dependências (Composer)": {
+        "Description": "Atualiza dependências do projeto via Composer",
+        "Command": "composer update"
+      },
+      "Listar Pacotes (Composer)": {
+        "Description": "Lista pacotes instalados via Composer",
+        "Command": "composer show"
+      },
+      "Verificar Versão do PHP": {
+        "Description": "Exibe a versão do PHP instalada",
+        "Command": "php -v"
+      }
+    }
   }
 }
