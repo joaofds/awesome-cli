@@ -65,7 +65,7 @@ function buildTree(data, parentElement, depth = 0) {
 document.addEventListener('DOMContentLoaded', () => {
     const tree = document.querySelector('.tree');
     
-    fetch('data.json')
+    fetch('http://localhost:3000/data')
     .then(response => response.json())
     .then(data => {
     
@@ -78,7 +78,85 @@ document.addEventListener('DOMContentLoaded', () => {
             }, {});
             
         buildTree(sortedData, tree);
+        window.cliData = sortedData; // Disponibiliza para o formulário
+        popularCategorias(sortedData);
     });
+
+    // Preenche categorias no datalist
+    function popularCategorias(data) {
+        const categoriaInput = document.getElementById('categoria');
+        const categoriasList = document.getElementById('categorias-list');
+        categoriasList.innerHTML = '';
+        Object.keys(data).forEach(cat => {
+            categoriasList.innerHTML += `<option value="${cat}">`;
+        });
+    }
+
+    // Preenche subcategorias no datalist ao mudar categoria
+    document.getElementById('categoria').addEventListener('input', function() {
+        const subcategoriaInput = document.getElementById('subcategoria');
+        const subcategoriasList = document.getElementById('subcategorias-list');
+        subcategoriasList.innerHTML = '';
+        const categoria = this.value;
+        if (categoria && window.cliData[categoria]) {
+            Object.keys(window.cliData[categoria]).forEach(sub => {
+                subcategoriasList.innerHTML += `<option value="${sub}">`;
+            });
+        }
+    });
+
+    // Lida com envio do formulário
+    document.getElementById('add-command-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const categoria = document.getElementById('categoria').value.trim();
+        const subcategoria = document.getElementById('subcategoria').value.trim();
+        const nomeComando = document.getElementById('nome-comando').value;
+        const descricao = document.getElementById('descricao').value;
+        const comando = document.getElementById('comando').value;
+        if (!categoria || !subcategoria || !nomeComando || !descricao || !comando) return;
+        // Envia para o backend
+        fetch('http://localhost:3000/add-command', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ categoria, subcategoria, nomeComando, descricao, comando })
+        })
+        .then(res => res.ok ? res.text() : Promise.reject('Erro ao salvar'))
+        .then(msg => {
+            // Atualiza árvore na interface
+            adicionarComandoNaArvore(categoria, subcategoria, nomeComando, descricao, comando);
+            this.reset();
+            alert('Comando salvo com sucesso!');
+        })
+        .catch(() => alert('Erro ao salvar comando no backend.'));
+    });
+
+    // Adiciona novo comando na árvore visual
+    function adicionarComandoNaArvore(categoria, subcategoria, nomeComando, descricao, comando) {
+        // Procura o <li> da categoria
+        const tree = document.querySelector('.tree');
+        let catDetails = Array.from(tree.querySelectorAll('summary')).find(s => s.textContent === categoria)?.parentElement;
+        if (!catDetails) return;
+        let subDetails = Array.from(catDetails.querySelectorAll('summary')).find(s => s.textContent === subcategoria)?.parentElement;
+        if (!subDetails) return;
+        // Cria novo comando
+        const li = document.createElement('li');
+        li.textContent = nomeComando;
+        li.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const newCommandDetails = document.createElement('pre');
+            newCommandDetails.classList.add('command-details');
+            newCommandDetails.textContent = `${descricao}\n${comando}`;
+            newCommandDetails.setAttribute("id", `detail-${++countId}`);
+            document.querySelector('.content').appendChild(newCommandDetails);
+            const pre = document.querySelector(`#detail-${countId}`)
+            let button = document.createElement('button');
+            button.classList.add('btn', 'btn-sm', 'btn-primary');
+            button.setAttribute("onclick", "deleteElement(event, this);");
+            button.textContent = "Remover";
+            pre.appendChild(button);
+        });
+        subDetails.querySelector('ul').appendChild(li);
+    }
 });
 
 // Remove elemento
