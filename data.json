@@ -98,6 +98,10 @@
       "Nova Branch": {
         "Description": "Cria nova branch e faz checkout",
         "Command": "git checkout -b nome_da_branch"
+      },
+      "Atualizar Repo Local": {
+        "Description": "Busca atualizações no repositorio remoto",
+        "Command": "git pull"
       }
     }
   }

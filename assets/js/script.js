@@ -62,10 +62,14 @@ function buildTree(data, parentElement, depth = 0) {
 }
 
 // Busca json e constroi a arvore
+// Detecta ambiente (localhost ou produção)
+const isLocalhost = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+const DATA_URL = isLocalhost ? 'http://localhost:3000/data' : 'data.json';
+
 document.addEventListener('DOMContentLoaded', () => {
     const tree = document.querySelector('.tree');
     
-    fetch('http://localhost:3000/data')
+    fetch(DATA_URL)
     .then(response => response.json())
     .then(data => {
     
@@ -114,6 +118,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const descricao = document.getElementById('descricao').value;
         const comando = document.getElementById('comando').value;
         if (!categoria || !subcategoria || !nomeComando || !descricao || !comando) return;
+        if (!isLocalhost) {
+            alert('Salvar comandos só é possível localmente!');
+            return;
+        }
         // Envia para o backend
         fetch('http://localhost:3000/add-command', {
             method: 'POST',
