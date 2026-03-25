@@ -54,7 +54,44 @@ function buildTree(data, parentElement, depth = 0) {
                 }
             });
             li.appendChild(delBtn);
-
+            // Clique para mostrar comando destacado e botão copiar
+            li.addEventListener('click', (event) => {
+                event.stopPropagation();
+                // Cria container
+                const container = document.createElement('div');
+                container.classList.add('command-details');
+                // Descrição
+                const desc = document.createElement('div');
+                desc.textContent = value.Description;
+                desc.className = 'command-desc mb-2';
+                container.appendChild(desc);
+                // Bloco de código destacado
+                const pre = document.createElement('pre');
+                const code = document.createElement('code');
+                code.className = 'language-bash';
+                code.textContent = value.Command;
+                pre.appendChild(code);
+                container.appendChild(pre);
+                // Botão copiar
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'btn btn-outline-secondary btn-sm btn-copy';
+                copyBtn.innerHTML = 'Copiar';
+                copyBtn.style.float = 'right';
+                copyBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    navigator.clipboard.writeText(value.Command).then(() => {
+                        copyBtn.innerHTML = 'Copiado!';
+                        setTimeout(() => copyBtn.innerHTML = 'Copiar', 1200);
+                    });
+                });
+                container.appendChild(copyBtn);
+                // Limpa e adiciona na área de conteúdo
+                const content = document.querySelector('.content');
+                content.innerHTML = '';
+                content.appendChild(container);
+                // Aplica highlight
+                if (window.hljs) window.hljs.highlightElement(code);
+            });
         }
 
         parentElement.appendChild(li);
