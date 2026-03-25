@@ -116,6 +116,14 @@
       "Load Banco": {
         "Description": "Importar dados do JSON para o banco",
         "Command": "python manage.py loaddata db.json"
+      },
+      "Make migration de um app": {
+        "Description": "Gera migrations de um app especifico",
+        "Command": "python manage.py makemigrations app_name"
+      },
+      "Rodar migrate especifica": {
+        "Description": "Roda migrate especifica passando app e numero da migrate",
+        "Command": "python manage.py migrate app_name 0079"
       }
     },
     "Laravel": {
