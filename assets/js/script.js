@@ -60,6 +60,9 @@ function buildTree(data, parentElement, depth = 0) {
                 // Cria container
                 const container = document.createElement('div');
                 container.classList.add('command-details');
+                container.style.marginBottom = '28px'; // Espaço entre elementos
+                container.style.maxWidth = '90%'; // Limita largura a 80% da área
+                container.style.wordBreak = 'break-word'; // Quebra linhas longas
                 // Descrição
                 const desc = document.createElement('div');
                 desc.textContent = value.Description;
@@ -85,9 +88,18 @@ function buildTree(data, parentElement, depth = 0) {
                     });
                 });
                 container.appendChild(copyBtn);
-                // Limpa e adiciona na área de conteúdo
+                // Botão remover
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'btn btn-danger btn-sm mr-2';
+                removeBtn.textContent = 'Remover';
+                removeBtn.style.marginLeft = '8px';
+                removeBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    container.remove();
+                });
+                container.appendChild(removeBtn);
+                // Adiciona na área de conteúdo (empilhando)
                 const content = document.querySelector('.content');
-                content.innerHTML = '';
                 content.appendChild(container);
                 // Aplica highlight
                 if (window.hljs) window.hljs.highlightElement(code);
