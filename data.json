@@ -163,6 +163,98 @@
         "Description": "Limpar cache da aplicação",
         "Command": "php artisan cache:clear"
       }
+    },
+    "dotnet": {
+      "Novo Projeto Console": {
+        "Description": "Cria um novo projeto console .NET",
+        "Command": "dotnet new console -n NomeDoProjeto"
+      },
+      "Restaurar Pacotes": {
+        "Description": "Restaura pacotes NuGet do projeto",
+        "Command": "dotnet restore"
+      },
+      "Build": {
+        "Description": "Compila o projeto",
+        "Command": "dotnet build"
+      },
+      "Run": {
+        "Description": "Executa o projeto",
+        "Command": "dotnet run"
+      },
+      "Publicar": {
+        "Description": "Publica o projeto para produção",
+        "Command": "dotnet publish -c Release -o ./publicacao"
+      },
+      "Adicionar Pacote": {
+        "Description": "Adiciona um pacote NuGet ao projeto",
+        "Command": "dotnet add package NomeDoPacote"
+      }
+    },
+    "Avalonia": {
+      "Novo Projeto": {
+        "Description": "Cria um novo projeto Avalonia App",
+        "Command": "dotnet new avalonia.app -n NomeDoProjeto"
+      },
+      "Novo Projeto MVVM": {
+        "Description": "Cria um novo projeto Avalonia MVVM",
+        "Command": "dotnet new avalonia.mvvm -n NomeDoProjeto"
+      },
+      "Build": {
+        "Description": "Compila o projeto Avalonia",
+        "Command": "dotnet build"
+      },
+      "Run": {
+        "Description": "Executa o projeto Avalonia",
+        "Command": "dotnet run"
+      }
+    },
+    "VueJS": {
+      "Novo Projeto": {
+        "Description": "Cria um novo projeto VueJS com Vite",
+        "Command": "npm create vite@latest nome-do-projeto -- --template vue"
+      },
+      "Instalar Dependências": {
+        "Description": "Instala as dependências do projeto",
+        "Command": "npm install"
+      },
+      "Rodar Dev Server": {
+        "Description": "Inicia o servidor de desenvolvimento",
+        "Command": "npm run dev"
+      },
+      "Build Produção": {
+        "Description": "Gera build de produção",
+        "Command": "npm run build"
+      },
+      "Preview Produção": {
+        "Description": "Visualiza build de produção localmente",
+        "Command": "npm run preview"
+      }
+    },
+    "Flutter": {
+      "Novo Projeto": {
+        "Description": "Cria um novo projeto Flutter",
+        "Command": "flutter create nome_do_projeto"
+      },
+      "Rodar App": {
+        "Description": "Executa o app em modo debug",
+        "Command": "flutter run"
+      },
+      "Build APK": {
+        "Description": "Gera APK para Android",
+        "Command": "flutter build apk"
+      },
+      "Build Web": {
+        "Description": "Gera build para web",
+        "Command": "flutter build web"
+      },
+      "Atualizar Dependências": {
+        "Description": "Atualiza as dependências do projeto",
+        "Command": "flutter pub upgrade"
+      },
+      "Testar": {
+        "Description": "Executa testes automatizados",
+        "Command": "flutter test"
+      }
     }
   },
   "Conteinerização": {
