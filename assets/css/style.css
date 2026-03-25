@@ -139,3 +139,31 @@ body {
   outline: none;
   box-shadow: 0 0 0 0.2rem #28a74580;
 }
+
+/* Botão de deleção só aparece no hover do summary ou li */
+.btn-delete {
+  color: #dc3545;
+  background: none;
+  border: none;
+  padding: 0 0.25rem;
+  margin-left: 0.5rem;
+  font-size: 1.1em;
+  vertical-align: middle;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+summary:hover > .btn-delete,
+summary:focus-within > .btn-delete,
+li:hover > .btn-delete,
+li:focus-within > .btn-delete {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.btn-delete:hover, .btn-delete:focus {
+  color: #a71d2a;
+  text-decoration: none;
+}

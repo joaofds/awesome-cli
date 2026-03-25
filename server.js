@@ -35,4 +35,24 @@ app.post('/add-command', (req, res) => {
   });
 });
 
+// Deleta categoria, subcategoria ou comando
+app.delete('/delete', (req, res) => {
+  const { tipo, key, categoria, subcategoria } = req.body;
+  fs.readFile('data.json', 'utf8', (err, data) => {
+    if (err) return res.status(500).send('Erro ao ler arquivo');
+    let json = JSON.parse(data);
+    if (tipo === 'categoria') {
+      delete json[key];
+    } else if (tipo === 'subcategoria' && categoria) {
+      if (json[categoria]) delete json[categoria][key];
+    } else if (tipo === 'comando' && categoria && subcategoria) {
+      if (json[categoria] && json[categoria][subcategoria]) delete json[categoria][subcategoria][key];
+    }
+    fs.writeFile('data.json', JSON.stringify(json, null, 2), err => {
+      if (err) return res.status(500).send('Erro ao salvar arquivo');
+      res.send('Deletado com sucesso!');
+    });
+  });
+});
+
 app.listen(PORT, () => console.log(`Servidor rodando em http://localhost:${PORT}`));

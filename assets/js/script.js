@@ -11,6 +11,18 @@ function buildTree(data, parentElement, depth = 0) {
             const details = document.createElement('details');
             const summary = document.createElement('summary');
             summary.textContent = key;
+            // Botão de deletar categoria/subcategoria
+            const delBtn = document.createElement('button');
+            delBtn.className = 'btn btn-link btn-sm btn-delete';
+            delBtn.title = depth === 0 ? 'Deletar categoria' : 'Deletar subcategoria';
+            delBtn.innerHTML = '<span aria-hidden="true">🗑️</span>';
+            delBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (confirm(`Tem certeza que deseja deletar ${depth === 0 ? 'a categoria' : 'a subcategoria'} '${key}'?`)) {
+                    handleDelete(depth, key, parentElement, li);
+                }
+            });
+            summary.appendChild(delBtn);
             details.appendChild(summary);
             li.appendChild(details);
 
@@ -30,34 +42,56 @@ function buildTree(data, parentElement, depth = 0) {
         } else if (depth === 2) {
             // Terceiro nível: comando clicável
             li.textContent = key;
-            li.addEventListener('click', (event) => {
-                event.stopPropagation(); // Evita a propagação para os elementos pais
-            
-                // Cria um novo elemento com a classe "command-details"
-                const newCommandDetails = document.createElement('pre');
-                newCommandDetails.classList.add('command-details');
-                newCommandDetails.textContent = `${value.Description}\n${value.Command}`;
-                newCommandDetails.setAttribute("id", `detail-${++countId}`);
-                
-                // Adiciona o novo elemento à coluna de conteúdo
-                document.querySelector('.content').appendChild(newCommandDetails);
-
-                // seleciona <pre> recem criado
-                const pre = document.querySelector(`#detail-${countId}`)
-
-                // botao para remover elemento.
-                let button = document.createElement('button');
-                button.classList.add('btn', 'btn-sm', 'btn-primary');
-                button.setAttribute("onclick", "deleteElement(event, this);");
-                button.textContent = "Remover";
-                pre.appendChild(button);
+            // Botão de deletar comando
+            const delBtn = document.createElement('button');
+            delBtn.className = 'btn btn-link btn-sm btn-delete';
+            delBtn.title = 'Deletar comando';
+            delBtn.innerHTML = '<span aria-hidden="true">🗑️</span>';
+            delBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (confirm(`Tem certeza que deseja deletar o comando '${key}'?`)) {
+                    handleDelete(depth, key, parentElement, li);
+                }
             });
-            
+            li.appendChild(delBtn);
+
         }
 
         parentElement.appendChild(li);
         parentElement.classList.add("inner-ul")
 
+    }
+}
+
+// Função para deletar categoria, subcategoria ou comando
+function handleDelete(depth, key, parentElement, li) {
+    // Remove do DOM
+    parentElement.removeChild(li);
+    // Se local, envia requisição ao backend
+    if (isLocalhost) {
+        let tipo;
+        let payload = { key };
+        if (depth === 0) tipo = 'categoria';
+        else if (depth === 1) {
+            tipo = 'subcategoria';
+            // Descobre categoria
+            const catSummary = li.closest('ul').parentElement.parentElement.querySelector('summary');
+            payload.categoria = catSummary ? catSummary.childNodes[0].textContent.trim() : '';
+        } else if (depth === 2) {
+            tipo = 'comando';
+            // Descobre categoria e subcategoria
+            const subSummary = li.closest('ul').parentElement.querySelector('summary');
+            const catSummary = li.closest('ul').parentElement.parentElement.parentElement.querySelector('summary');
+            payload.categoria = catSummary ? catSummary.childNodes[0].textContent.trim() : '';
+            payload.subcategoria = subSummary ? subSummary.childNodes[0].textContent.trim() : '';
+        }
+        fetch(`http://localhost:3000/delete`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ tipo, ...payload })
+        })
+        .then(res => res.ok ? res.text() : Promise.reject('Erro ao deletar'))
+        .catch(() => alert('Erro ao deletar no backend.'));
     }
 }
 
