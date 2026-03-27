@@ -294,6 +294,10 @@
       "PostgreSQL Restore pgdump": {
         "Description": "PostgreSQL restore pdgump file",
         "Command": "docker exec -i <container> pg_restore -U postgres -d <db_name> < ./filename.pgdump"
+      },
+      "PostgreSQL Backup pgdump": {
+        "Description": "Backup do banco PostgreSQL usando pg_dump em container Docker",
+        "Command": "docker exec -i postgres-postgres-1 pg_dump -U postgres -d portalis_prod -Fc > portalis_prod.pgdump --verbose"
       }
     },
     "Docker Compose": {
