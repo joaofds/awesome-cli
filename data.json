@@ -595,6 +595,56 @@
         "Description": "Exibe a versão do PHP instalada",
         "Command": "php -v"
       }
+    },
+    "NodeJS": {
+      "Iniciar Projeto": {
+        "Description": "Inicia um novo projeto NodeJS com um package.json padrão",
+        "Command": "npm init -y"
+      },
+      "Instalar Dependências": {
+        "Description": "Instala todas as dependências listadas no package.json",
+        "Command": "npm install"
+      },
+      "Instalar Pacote": {
+        "Description": "Instala um pacote específico localmente",
+        "Command": "npm install nome_do_pacote"
+      },
+      "Instalar Pacote Global": {
+        "Description": "Instala um pacote globalmente",
+        "Command": "npm install -g nome_do_pacote"
+      },
+      "Remover Pacote": {
+        "Description": "Remove um pacote instalado localmente",
+        "Command": "npm uninstall nome_do_pacote"
+      },
+      "Atualizar Dependências": {
+        "Description": "Atualiza todas as dependências do projeto",
+        "Command": "npm update"
+      },
+      "Rodar Script": {
+        "Description": "Executa um script definido no package.json",
+        "Command": "npm run nome_do_script"
+      },
+      "Rodar Projeto (start)": {
+        "Description": "Executa o script de inicialização padrão (start)",
+        "Command": "npm start"
+      },
+      "Rodar Testes": {
+        "Description": "Executa os testes definidos no projeto",
+        "Command": "npm test"
+      },
+      "Listar Pacotes Instalados": {
+        "Description": "Lista todos os pacotes instalados no projeto",
+        "Command": "npm list --depth=0"
+      },
+      "Verificar Pacotes Desatualizados": {
+        "Description": "Lista pacotes que estão desatualizados",
+        "Command": "npm outdated"
+      },
+      "Limpar Cache": {
+        "Description": "Limpa o cache do npm",
+        "Command": "npm cache clean --force"
+      }
     }
   }
 }
