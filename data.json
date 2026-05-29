@@ -433,100 +433,6 @@
       }
     }
   },
-  "Console": {
-    "Linux": {
-      "Listar arquivos": {
-        "Description": "Lista arquivos e pastas do diretório atual",
-        "Command": "ls -la"
-      },
-      "Ver conteúdo de arquivo": {
-        "Description": "Exibe o conteúdo de um arquivo",
-        "Command": "cat nome_do_arquivo"
-      },
-      "Buscar texto em arquivos": {
-        "Description": "Busca por texto em arquivos recursivamente",
-        "Command": "grep -r 'texto' ."
-      },
-      "Ver uso de disco": {
-        "Description": "Mostra uso de disco em formato legível",
-        "Command": "df -h"
-      },
-      "Ver processos": {
-        "Description": "Lista processos em execução",
-        "Command": "ps aux"
-      },
-      "Matar processo": {
-        "Description": "Finaliza processo pelo PID",
-        "Command": "kill -9 PID"
-      },
-      "Copiar arquivos": {
-        "Description": "Copia arquivos ou diretórios",
-        "Command": "cp -r origem destino"
-      },
-      "Mover arquivos": {
-        "Description": "Move arquivos ou diretórios",
-        "Command": "mv origem destino"
-      },
-      "Remover arquivos": {
-        "Description": "Remove arquivos ou diretórios",
-        "Command": "rm -rf arquivo_ou_diretorio"
-      },
-      "Ver IP": {
-        "Description": "Mostra o endereço IP da máquina",
-        "Command": "ip a"
-      },
-      "Ver variáveis de ambiente": {
-        "Description": "Lista variáveis de ambiente",
-        "Command": "printenv"
-      }
-    },
-    "Windows": {
-      "Listar arquivos": {
-        "Description": "Lista arquivos e pastas do diretório atual",
-        "Command": "dir"
-      },
-      "Ver conteúdo de arquivo": {
-        "Description": "Exibe o conteúdo de um arquivo",
-        "Command": "type nome_do_arquivo"
-      },
-      "Buscar texto em arquivos": {
-        "Description": "Busca por texto em arquivos do diretório atual",
-        "Command": "findstr /S /I /C:\"texto\" *.*"
-      },
-      "Ver uso de disco": {
-        "Description": "Mostra uso de disco das unidades",
-        "Command": "wmic logicaldisk get size,freespace,caption"
-      },
-      "Ver processos": {
-        "Description": "Lista processos em execução",
-        "Command": "tasklist"
-      },
-      "Matar processo": {
-        "Description": "Finaliza processo pelo nome ou PID",
-        "Command": "taskkill /IM nome_processo.exe /F"
-      },
-      "Copiar arquivos": {
-        "Description": "Copia arquivos ou diretórios",
-        "Command": "xcopy origem destino /E /I"
-      },
-      "Mover arquivos": {
-        "Description": "Move arquivos ou diretórios",
-        "Command": "move origem destino"
-      },
-      "Remover arquivos": {
-        "Description": "Remove arquivos ou diretórios",
-        "Command": "del /F /Q arquivo & rmdir /S /Q diretorio"
-      },
-      "Ver IP": {
-        "Description": "Mostra o endereço IP da máquina",
-        "Command": "ipconfig"
-      },
-      "Ver variáveis de ambiente": {
-        "Description": "Lista variáveis de ambiente",
-        "Command": "set"
-      }
-    }
-  },
   "Linguagens": {
     "Python": {
       "Rodar Script": {
@@ -660,6 +566,126 @@
       "Disconnect": {
         "Description": "Desconecta do serviço",
         "Command": "globalprotect disconnect"
+      }
+    }
+  },
+  "CLI": {
+    "Linux": {
+      "Listar arquivos": {
+        "Description": "Lista arquivos e pastas do diretório atual",
+        "Command": "ls -la"
+      },
+      "Ver conteúdo de arquivo": {
+        "Description": "Exibe o conteúdo de um arquivo",
+        "Command": "cat nome_do_arquivo"
+      },
+      "Buscar texto em arquivos": {
+        "Description": "Busca por texto em arquivos recursivamente",
+        "Command": "grep -r 'texto' ."
+      },
+      "Ver uso de disco": {
+        "Description": "Mostra uso de disco em formato legível",
+        "Command": "df -h"
+      },
+      "Ver processos": {
+        "Description": "Lista processos em execução",
+        "Command": "ps aux"
+      },
+      "Matar processo": {
+        "Description": "Finaliza processo pelo PID",
+        "Command": "kill -9 PID"
+      },
+      "Copiar arquivos": {
+        "Description": "Copia arquivos ou diretórios",
+        "Command": "cp -r origem destino"
+      },
+      "Mover arquivos": {
+        "Description": "Move arquivos ou diretórios",
+        "Command": "mv origem destino"
+      },
+      "Remover arquivos": {
+        "Description": "Remove arquivos ou diretórios",
+        "Command": "rm -rf arquivo_ou_diretorio"
+      },
+      "Ver IP": {
+        "Description": "Mostra o endereço IP da máquina",
+        "Command": "ip a"
+      },
+      "Ver variáveis de ambiente": {
+        "Description": "Lista variáveis de ambiente",
+        "Command": "printenv"
+      }
+    },
+    "Windows": {
+      "Listar arquivos": {
+        "Description": "Lista arquivos e pastas do diretório atual",
+        "Command": "dir"
+      },
+      "Ver conteúdo de arquivo": {
+        "Description": "Exibe o conteúdo de um arquivo",
+        "Command": "type nome_do_arquivo"
+      },
+      "Buscar texto em arquivos": {
+        "Description": "Busca por texto em arquivos do diretório atual",
+        "Command": "findstr /S /I /C:\"texto\" *.*"
+      },
+      "Ver uso de disco": {
+        "Description": "Mostra uso de disco das unidades",
+        "Command": "wmic logicaldisk get size,freespace,caption"
+      },
+      "Ver processos": {
+        "Description": "Lista processos em execução",
+        "Command": "tasklist"
+      },
+      "Matar processo": {
+        "Description": "Finaliza processo pelo nome ou PID",
+        "Command": "taskkill /IM nome_processo.exe /F"
+      },
+      "Copiar arquivos": {
+        "Description": "Copia arquivos ou diretórios",
+        "Command": "xcopy origem destino /E /I"
+      },
+      "Mover arquivos": {
+        "Description": "Move arquivos ou diretórios",
+        "Command": "move origem destino"
+      },
+      "Remover arquivos": {
+        "Description": "Remove arquivos ou diretórios",
+        "Command": "del /F /Q arquivo & rmdir /S /Q diretorio"
+      },
+      "Ver IP": {
+        "Description": "Mostra o endereço IP da máquina",
+        "Command": "ipconfig"
+      },
+      "Ver variáveis de ambiente": {
+        "Description": "Lista variáveis de ambiente",
+        "Command": "set"
+      }
+    },
+    "UV Python": {
+      "Instalar dependências": {
+        "Description": "Instalar dependências do projeto",
+        "Command": "uv sync"
+      },
+      "Add depedência": {
+        "Description": "Adicionar uma nova dependência",
+        "Command": "uv add django"
+      },
+      "Remove dependência": {
+        "Description": "Remover uma dependência",
+        "Command": "uv remove django"
+      },
+      "Rodar um comando": {
+        "Description": "Rodar um comando dentro do ambiente virtual",
+        "Command": "uv run python manage.py runserver"
+      },
+      "Install Python": {
+        "Description": "Instalar uma versão específica do Python",
+        "Command": "uv python install 3.14"
+      },
+      "Criar projeto": {
+        "Description": "Criar um novo projeto",
+        "Command": "uv init meu-projeto"
       }
     }
   }
